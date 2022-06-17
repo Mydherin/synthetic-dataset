@@ -25,7 +25,7 @@ def calculate_kdes(df):
         kdes[category] = kde
     return kdes
 
-# Plot univariate dataset using KDE
+# Plot univariate dataset with multiplet categories using KDE
 def plot_univariate(df, kdes):
     # Define figure
     fig, ax = plt.subplots()
@@ -44,3 +44,19 @@ def plot_univariate(df, kdes):
         density = kde(support)
         # Plot distribution
         ax.fill_between(support, density)
+
+# Plot univariate dataset with single categories using KDE
+def plot_univariate_single(df, kde):
+    # Define figure
+    fig, ax = plt.subplots()
+    # Get distribution values
+    values = df.iloc[:,0]
+    # Get min and max values
+    min = values.min()
+    max = values.max()
+    # Generate support
+    support = np.linspace(min, max, 1000)
+    # Get KDE density 
+    density = kde(support)
+    # Plot distribution
+    ax.fill_between(support, density, color="k")
