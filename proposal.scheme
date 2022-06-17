@@ -1,1 +1,53 @@
-# Proposal scheme
+# KDE Generation
+
+- Purpose of this project
+- How to achieve the purpose
+
+## Test Dataset
+
+- Purpose
+- Special features
+- Dataset parameters
+- Generate dataset; Plot dataset [code]
+
+## Calculate KDEs by category
+
+- Purpose
+- How to achieve the purpose
+- Single KDE extension (attributes and categoris involved in one KDE)
+- Calculate KDEs [code]
+- How to test KDEs
+- Plot KDE distributions [code]
+- KDEs test conclusion
+
+## The theorical method
+
+- Purpose
+- How to achieve the purpose
+  - Support generation specifications
+  - Labeled process
+  - Ranking by density
+  - Prune
+  - Optimal threshold
+- Analysis simplification
+- Plot simplificated dataset
+- Reduce dataset instances (only one category); Get category KDE; Plot simplificated dataset [code]
+- Support generation explanation
+  - Purpose
+  - Support requisites
+  - Support generation methods
+  - Theorical way
+  - Granularity
+  - Optimal granularity
+  - Multivariate dataset
+  - Problem of this way
+
+- Support generation [code]
+- Support to dataset and plot
+- Plot support [code]
+- Plot conclusion
+- Support reshape purpose
+- How to achieve support reshape support
+- Prune raw support [code]
+  
+
