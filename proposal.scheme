@@ -41,7 +41,6 @@
   - Optimal granularity
   - Multivariate dataset
   - Problem of this way
-
 - Support generation [code]
 - Support to dataset and plot
 - Plot support [code]
@@ -49,5 +48,6 @@
 - Support reshape purpose
 - How to achieve support reshape support
 - Prune raw support [code]
+
   
 
