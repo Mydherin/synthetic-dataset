@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 # Calculate KDE by category
 def calculate_kdes(df):
     kdes = {}
+    ranges = {}
     # Get categories values
     categories = df.iloc[:,-1].unique()
     # Caculate KDE for each category
@@ -16,15 +17,15 @@ def calculate_kdes(df):
         values = filtered_df.iloc[:,:-1].to_numpy()
         # Calculate KDE
         kde = stats.gaussian_kde(values.T)
-        # TMP
-        # min = np.min(values)
-        # max = np.max(values)
-        # support = np.linspace(min, max, 1000)
-        # density = kde(support)
-        # plt.fill_between(support, density)
+        # Get min
+        min_value = np.min(values)
+        # Get max
+        max_value = np.max(values)
+        # Add range to ranges list
+        ranges[category] = (min_value,max_value)
         # Add KDE to KDEs dictionary
         kdes[category] = kde
-    return kdes
+    return kdes, ranges
 
 # Estimate instance densities using KDEs
 def estimate_density(df, kdes):
@@ -58,21 +59,39 @@ def estimate_density(df, kdes):
     return new_df
 
 # Plot univariate dataset with multiplet categories using KDE
-def plot_univariate(df, kdes):
+def plot_univariate(df, kdes, ranges=False):
     # Define figure
     fig, ax = plt.subplots()
     # Plot by category
-    for category in kdes:
+    for category, kde in kdes.items():
         # Get distribution values
         values = df[df.iloc[:,1] == category].iloc[:,0]
-        # Get min and max values
-        min = values.min()
-        max = values.max()
+        # If there ara ranges
+        if ranges:
+            # There are ranges
+            # Get min and max values from ranges
+            min_value = ranges[category][0]
+            max_value = ranges[category][1]
+        else:
+            # There are no ranges
+            # Get min and max values from values
+            min_value = values.min()
+            max_value = values.max()
         # Generate support
-        support = np.linspace(min, max, 1000)
-        # Get category KDE
-        kde = kdes[category]
+        support = np.linspace(min_value, max_value, 1000)
         # Get KDE density 
         density = kde(support)
         # Plot distribution
         ax.fill_between(support, density)
+
+# Build ranking by density
+def build_ranking(df):
+    return df.sort_values(by=['density'], ascending=False)
+
+# Gets threshold first intances from ranking
+def prune(ranking, threshold):
+    # Prune ranking by threshold
+    ranking = ranking.iloc[:threshold,:]
+    # Remove density column
+    ranking = ranking.iloc[:,:-1]
+    return ranking
