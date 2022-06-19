@@ -1,0 +1,36 @@
+# KDE Dataset Generation
+
+## Purpose
+
+- Purpose
+- New dataset requesites
+- How to achieve the purpose
+
+## Test Dataset Generation
+
+- Dataset special features
+- Dataset dimensions
+- Test dataset generation; Plot [code]
+- Plot conclusion
+
+## KDEs
+
+- How many attributes and categories are grouped for each KDE
+- KDEs [code]
+- How to test KDEs
+- Plot using KDEs [code]
+- KDEs testing conclusion
+
+## The method
+
+- How it works
+- How to extrapolate to multidimensional dataset
+- Define interval
+- Define interval [code]
+- Instances generation
+- Instances generation [code]
+- Build new dataset and plot it
+- Build new dataset and plot it [code]
+- Conclusion about results
+
+
