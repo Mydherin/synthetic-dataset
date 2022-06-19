@@ -1,4 +1,5 @@
 import pandas as pd
+import random
 import numpy as np
 from scipy import stats
 import matplotlib.pyplot as plt
@@ -57,6 +58,64 @@ def estimate_density(df, kdes):
     # Create new df from new df instances
     new_df = pd.DataFrame(data=new_df, columns=columns)
     return new_df
+
+# Genrate new dataframe randomly using KDEs
+def random_generation(n_instances, kdes, attribute_intervals, columns, seed):
+    # Set random seed
+    random.seed(seed)
+    # Define new df
+    new_df = {}
+    # Define finish
+    finish = {}
+    # Initialize finish and new_df
+    for category in kdes:
+        finish[category] = False
+        new_df[category] = []
+    # Generate and label instances until reaching the target amount for each category
+    while not all(list(finish.values())):
+        # Define instance
+        instance = []
+        # Build new instance generating an attribute value for each attribute
+        for attribute in attribute_intervals:
+            # Generate random value between min and max value
+            new_value = random.uniform(attribute_intervals[attribute][0],attribute_intervals[attribute][1])
+            # Add value to instance
+            instance.append(new_value)
+        # Define max density
+        max_density = -1
+        # Define new category
+        new_category = None
+        # Get max density between densities which have been estimate for each category
+        for category in kdes:
+            # Estimate density
+            density = kdes[category](instance)
+            # If density is the biggest density
+            if density > max_density:
+                # It is the biggest density
+                # Change max denstity to current denstiy
+                max_density = density
+                # Change new category to current category
+                new_category = category
+        # If category is not full
+        if len(new_df[new_category]) < n_instances:
+            # If category is not full
+            # Add category to instance
+            instance.append(new_category)
+            # Add instance new_df category
+            new_df[new_category].append(instance)
+        else:
+            # If category is full
+            # Set category is full in finish
+            finish[new_category] = True
+    # Wrap new df
+    new_df_building = []
+    for category in kdes:
+        new_df_building.extend(new_df[category])
+    new_df = new_df_building
+    # Define final new df
+    new_df = pd.DataFrame(data=new_df, columns=columns)
+    return new_df
+
 
 # Plot univariate dataset with multiplet categories using KDE
 def plot_univariate(df, kdes, ranges=False):

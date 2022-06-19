@@ -27,14 +27,15 @@
 
 ## The method
 
-- How it works
-- How to extrapolate to multidimensional dataset
-- Define interval
+- Purpose
+- Instance attribute values
+- How to achive the purpose
+- Number of new instances
 - Define interval [code]
 - Instances generation
 - Instances generation [code]
-- Build new dataset and plot it
-- Build new dataset and plot it [code]
+- Plot it
+- Plot it [code]
 - Conclusion about results
 
 

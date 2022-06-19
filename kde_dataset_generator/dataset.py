@@ -10,7 +10,26 @@ def generate_univariate_dataset(n_samples, n_categories, seed):
     X, y = make_blobs(n_samples=n_samples, centers=n_categories, n_features=n_features, random_state=seed)
     # Create dataframe
     df = DataFrame(dict(x=X[:,0], category=y))
-    return df
+    return df.sort_values(by=["category"])
+
+# Get atribute intervals
+def attribute_intervals(df):
+    # Define attribute intervals structure
+    attribute_intervals = {} 
+    # Remove category column from dataset
+    df = df.iloc[:,:-1]
+    # Get attribute interval for each attribute
+    for attribute in df.columns:
+        # Get min value
+        min_value = df[attribute].min()
+        # Get max value
+        max_value = df[attribute].max()
+        # Make interval
+        interval = (min_value, max_value)
+        # Add interval to attribute intervals
+        attribute_intervals[attribute] = interval
+    return attribute_intervals
+
 
 # Plot an histogram showing univariate dataset distribution
 def plot_univariate(df):
