@@ -30,7 +30,6 @@ def attribute_intervals(df):
         attribute_intervals[attribute] = interval
     return attribute_intervals
 
-
 # Plot an histogram showing univariate dataset distribution
 def plot_univariate(df):
     # Define figure

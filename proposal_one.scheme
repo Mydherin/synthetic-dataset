@@ -25,7 +25,7 @@
 - Plot using KDEs [code]
 - KDEs testing conclusion
 
-## The method
+## First method
 
 - Purpose
 - Instance attribute values
@@ -41,4 +41,22 @@
 - Differences between category distributions
 - Why differences between category distributions
 
+## Second method
 
+- Purpose
+- How to achieve this purpose
+- Different ways of support generation
+- Exahustive support generation
+- Support granularity
+- Exahustive support generation in multidimensional dataset
+- Exahustive support generation problem
+- Implement support generation
+- Simplification [code]
+- Plot simplificated dataset
+- Plot simplificated dataset [code]
+- Support generation [code]
+- Density estimations 
+- Density estimations [code]
+- Diffent ways of increase instance representations
+- How we increase instance representations
+- Possible duplicate problem

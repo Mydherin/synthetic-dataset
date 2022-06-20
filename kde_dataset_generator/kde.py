@@ -116,7 +116,6 @@ def random_generation(n_instances, kdes, attribute_intervals, columns, seed):
     new_df = pd.DataFrame(data=new_df, columns=columns)
     return new_df
 
-
 # Plot univariate dataset with multiplet categories using KDE
 def plot_univariate(df, kdes, ranges=False):
     # Define figure
@@ -154,3 +153,21 @@ def prune(ranking, threshold):
     # Remove density column
     ranking = ranking.iloc[:,:-1]
     return ranking
+
+# Generate the suport for univariate dataset 
+def univariate_support(df, granularity):
+    # Define supports (one per category)
+    supports = {}
+    # Generate support for each category
+    for category in df.iloc[:,-1].unique():
+        # Filter dataset by category
+        filtered_df = df[df.iloc[:,-1] == category]
+        # Get min value
+        min_value = filtered_df.iloc[:,0].min()
+        # Get max value
+        max_value = filtered_df.iloc[:,0].max()
+        # Build the support
+        support = np.linspace(min_value, max_value, granularity)
+        # Add support to supports
+        supports[category] = support
+    return supports 
