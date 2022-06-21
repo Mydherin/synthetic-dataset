@@ -42,10 +42,3 @@ def plot_univariate(df):
         values = df[df.iloc[:,1] == category].iloc[:,0]
         # Plot distribution
         ax.hist(values)
-
-# Plot an histogram from distribution
-def plot_distribution(distribution):
-    # Define figure
-    fig, ax = plt.subplots()
-    # Plot distribution
-    ax.hist(distribution)

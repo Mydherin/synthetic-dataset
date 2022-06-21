@@ -193,15 +193,3 @@ def plot_univariate(df, kdes, ranges=False):
         density = kde(support)
         # Plot distribution
         ax.fill_between(support, density)
-
-# Build ranking by density
-def build_ranking(df):
-    return df.sort_values(by=['density'], ascending=False)
-
-# Gets threshold first intances from ranking
-def prune(ranking, threshold):
-    # Prune ranking by threshold
-    ranking = ranking.iloc[:threshold,:]
-    # Remove density column
-    ranking = ranking.iloc[:,:-1]
-    return ranking
