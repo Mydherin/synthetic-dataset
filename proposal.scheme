@@ -1,58 +1,71 @@
-# KDE Generation
+# KDE Dataset Generation
 
-- Purpose of this project
-- How to achieve the purpose
-
-## Test Dataset
+## Purpose
 
 - Purpose
-- Special features
-- Dataset parameters
-- Generate dataset; Plot dataset [code]
+- New dataset requesites
+- How to achieve the purpose
 
-## Calculate KDEs by category
+## Test Dataset Generation
 
 - Purpose
-- How to achieve the purpose
-- Single KDE extension (attributes and categoris involved in one KDE)
-- Calculate KDEs [code]
-- How to test KDEs
-- Plot KDE distributions [code]
-- KDEs test conclusion
-
-## The theorical method
-
-- Purpose
-- How to achieve the purpose
-  - Support generation specifications
-  - Labeled process
-  - Ranking by density
-  - Prune
-  - Optimal threshold
-- Analysis simplification
-- Plot simplificated dataset
-- Reduce dataset instances (only one category); Get category KDE; Plot simplificated dataset [code]
-- Support generation explanation
-  - Purpose
-  - Support requisites
-  - Support generation methods
-  - Theorical way
-  - Granularity
-  - Optimal granularity
-  - Multivariate dataset
-  - Problem of this way
-- Support generation [code]
-- Support to dataset and plot
-- Plot support [code]
+- Dataset special features
+- Dataset dimensions
+- Plot testing
+- Test dataset generation; Plot [code]
 - Plot conclusion
-- Support reshape purpose
-- How to achieve support reshape support
-- Prune raw support
-- Prune raw support [code]
-- Make ranking
-- Make ranking [code]
-- Prune
-- Prune [code]
-- Test purpose
-- Plot dataset to get the purpose
 
+## KDEs
+
+- Purpose
+- How KDE is calculated
+- KDEs for this case
+- KDEs [code]
+- How to test KDEs
+- Plot using KDEs [code]
+- KDEs testing conclusion
+
+## First method
+
+- Purpose
+- Instance attribute values
+- How to achive the purpose
+- Number of new instances
+- Define interval [code]
+- Instances generation
+- Instances generation [code]
+- Plot it
+- Plot it [code]
+- Conclusion about results
+- Instances well labeled
+- Differences between category distributions
+- Why differences between category distributions
+
+## Second method
+
+- Purpose
+- How to achieve this purpose
+- Different ways of support generation
+- Exahustive support generation
+- Support granularity
+- Exahustive support generation in multidimensional dataset
+- Exahustive support generation problem
+- Implement support generation
+- Support generation[code]
+- Density estimations 
+- Density estimations [code]
+- How to build new dataset from densities
+- Diffent ways of increase instance representations
+- How we increase instance representations
+- Possible duplicate problem
+- Representation increment [code]
+- Plot new dataset
+- Plot new dataset [code]
+- Visual conclusion
+- New dataset size problem
+- Most important part of this project
+
+## Future changes
+
+- Purpose
+- Mathematic methods
