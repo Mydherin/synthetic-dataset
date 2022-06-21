@@ -12,13 +12,13 @@ def generate_univariate_dataset(n_samples, n_categories, seed):
     df = DataFrame(dict(x=X[:,0], category=y))
     return df.sort_values(by=["category"])
 
-# Get atribute intervals
-def attribute_intervals(df):
-    # Define attribute intervals structure
-    attribute_intervals = {} 
+# Get attributes intervals
+def attributes_intervals(df):
+    # Define attributes intervals structure
+    attributes_intervals = {} 
     # Remove category column from dataset
     df = df.iloc[:,:-1]
-    # Get attribute interval for each attribute
+    # Get attributes interval for each attribute
     for attribute in df.columns:
         # Get min value
         min_value = df[attribute].min()
@@ -27,8 +27,8 @@ def attribute_intervals(df):
         # Make interval
         interval = (min_value, max_value)
         # Add interval to attribute intervals
-        attribute_intervals[attribute] = interval
-    return attribute_intervals
+        attributes_intervals[attribute] = interval
+    return attributes_intervals
 
 # Plot an histogram showing univariate dataset distribution
 def plot_univariate(df):
