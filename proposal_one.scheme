@@ -51,12 +51,21 @@
 - Exahustive support generation in multidimensional dataset
 - Exahustive support generation problem
 - Implement support generation
-- Simplification [code]
-- Plot simplificated dataset
-- Plot simplificated dataset [code]
-- Support generation [code]
+- Support generation[code]
 - Density estimations 
 - Density estimations [code]
+- How to build new dataset from densities
 - Diffent ways of increase instance representations
 - How we increase instance representations
 - Possible duplicate problem
+- Representation increment [code]
+- Plot new dataset
+- Plot new dataset [code]
+- Visual conclusion
+- New dataset size problem
+- Most important part of this project
+
+## Future changes
+
+- Purpose
+- Mathematic methods

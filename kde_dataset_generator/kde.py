@@ -28,6 +28,29 @@ def calculate_kdes(df):
         kdes[category] = kde
     return kdes, ranges
 
+# Generate the suport for univariate dataset 
+def univariate_support(df, granularity):
+    # Define new df
+    new_df = []
+    # Get categories
+    categories = df.iloc[:,-1].unique()
+    # Generate support for each category
+    for category in categories:
+        # Filter dataset by category
+        filtered_df = df[df.iloc[:,-1] == category]
+        # Get min value
+        min_value = filtered_df.iloc[:,0].min()
+        # Get max value
+        max_value = filtered_df.iloc[:,0].max()
+        # Build the support
+        support = np.linspace(min_value, max_value, granularity)
+        support = list(zip(support, np.full(granularity, category)))
+        # Add support to new df
+        new_df.extend(support)
+    # Build new df
+    new_df = pd.DataFrame(data=new_df, columns=df.columns)
+    return new_df 
+
 # Estimate instance densities using KDEs
 def estimate_density(df, kdes):
     # Define new df
@@ -41,7 +64,7 @@ def estimate_density(df, kdes):
         # Get category kde
         kde = kdes[category]
         # Estimate density for each instance in filtered dataset
-        for index, row in df.iterrows():
+        for index, row in filtered_df.iterrows():
             # Instance without category to numpy
             instance = row.iloc[:-1].to_numpy()
             # Estimate density
@@ -57,6 +80,35 @@ def estimate_density(df, kdes):
     columns.append("density")
     # Create new df from new df instances
     new_df = pd.DataFrame(data=new_df, columns=columns)
+    return new_df
+
+# Generate new dataser adjusting instance representation.
+def adjust_representation(densities):
+    # Define new instances
+    new_instances = []
+    # Get categories
+    categories = densities.iloc[:,-2].unique()
+    # Estimate instance density for each category instances
+    for category in categories:
+        # Filter dataset by category
+        filtered_densities = densities[densities.iloc[:,-2] == category]
+        # Get min density value
+        min_density = filtered_densities.iloc[:,-1].min()
+        # Generate proportional number (density based) of instances for each instance
+        for index, row in filtered_densities.iterrows():
+            # Get instance density
+            density = row["density"]
+            # Estimate amount of duplicate instances
+            n_duplicate_instances = round(density/min_density)
+            # Generate duplicate instances
+            duplicate_instances = [row.iloc[:-1].to_list() for i in range(n_duplicate_instances)]
+            # Add duplicate instances to new dataframe
+            new_instances.extend(duplicate_instances)
+    # Define new columns
+    columns = densities.columns.to_list()
+    del columns[-1]
+    # Define new df
+    new_df = pd.DataFrame(data=new_instances, columns=columns)
     return new_df
 
 # Genrate new dataframe randomly using KDEs
@@ -153,21 +205,3 @@ def prune(ranking, threshold):
     # Remove density column
     ranking = ranking.iloc[:,:-1]
     return ranking
-
-# Generate the suport for univariate dataset 
-def univariate_support(df, granularity):
-    # Define supports (one per category)
-    supports = {}
-    # Generate support for each category
-    for category in df.iloc[:,-1].unique():
-        # Filter dataset by category
-        filtered_df = df[df.iloc[:,-1] == category]
-        # Get min value
-        min_value = filtered_df.iloc[:,0].min()
-        # Get max value
-        max_value = filtered_df.iloc[:,0].max()
-        # Build the support
-        support = np.linspace(min_value, max_value, granularity)
-        # Add support to supports
-        supports[category] = support
-    return supports 
