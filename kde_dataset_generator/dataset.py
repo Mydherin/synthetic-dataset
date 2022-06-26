@@ -31,9 +31,11 @@ def attributes_intervals(df):
     return attributes_intervals
 
 # Plot an histogram showing univariate dataset distribution
-def plot_univariate(df):
+def plot_univariate(title, df):
     # Define figure
     fig, ax = plt.subplots()
+    # Set chart title
+    ax.set_title(title)
     # Get categories values
     categories = df.iloc[:,-1].unique()
     # Plot hist by category

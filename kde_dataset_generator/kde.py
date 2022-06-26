@@ -169,9 +169,11 @@ def random_generation(n_instances, kdes, attribute_intervals, columns, seed):
     return new_df
 
 # Plot univariate dataset with multiplet categories using KDE
-def plot_univariate(df, kdes, ranges=False):
+def plot_univariate(title, df, kdes, ranges=False):
     # Define figure
     fig, ax = plt.subplots()
+    # Set chart title
+    ax.set_title(title)
     # Plot by category
     for category, kde in kdes.items():
         # Get distribution values

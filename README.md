@@ -2,23 +2,24 @@
 
 Generate new dataset from original data keeping the "essence" using `Probability Density Functions` which are estimated using `Kernel Density Estimation`.
 
-## Requisites
-
-- >= `Python 3`.
-- `Python Jupyter Kernel`.
-- Frontend for `Jupyter Notebooks`.
-
-We recommend `Jupyter Notebook package` which contains all in one (`kernel` and `frontend`).
-
 ## Installation
+
+Make sure you are in `<project-path>`.
 
 Install Python dependencies:
 
 ```sh
-cd <project-path>
 pip3 install -r requeriments.txt
+```
+Install `kde-dataset-generator` package in editable mode:
+```sh
+pip3 install -e .
 ```
 ## Usage
 
-Open `proposal.ipynb` (notebook) with your `Jupyter Notebooks` frontend and run it.
+Run the main file (`__main__.py`) of `kde-dataset-generator` package from any `IDE` which support images visualization.
 
+## Alternative Formats
+
+- Jupyter Notebook.
+- PDF.
