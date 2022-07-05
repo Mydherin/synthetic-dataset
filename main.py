@@ -2,7 +2,7 @@
 """
 # KDE Dataset Generation
 
-*Version 1.0.2*
+*Version 1.0.3*
 
 ## Purpose
 
@@ -21,7 +21,7 @@ We will generate the custom dataset with 200 instances (100 instances per catego
 Finally, we will plot the dataset distribution per category. **(Figure 1)**
 """
 
-from kde_dataset_generator import dataset
+import dataset
 
 # Dataset params
 size = 200
@@ -46,7 +46,7 @@ We will always generate as many `KDEs` as categories are. We will take instances
 For this case, we will calculate two `KDEs` (1 for category `0`, 1 for category `1`).
 """
 
-from kde_dataset_generator import kde 
+import kde 
 
 # Caculate KDEs
 kdes, ranges = kde.calculate_kdes(df)

@@ -11,13 +11,10 @@ Install Python dependencies:
 ```sh
 pip3 install -r requeriments.txt
 ```
-Install `kde-dataset-generator` package in editable mode:
-```sh
-pip3 install -e .
-```
+
 ## Usage
 
-Run the main file (`__main__.py`) of `kde-dataset-generator` package from any `IDE` which support images visualization.
+Run the main file (`main.py`) of `kde-dataset-generator` package from any `IDE` which support images visualization.
 
 ## Alternative Formats
 
