@@ -2,14 +2,15 @@ from pandas import DataFrame
 from sklearn.datasets import make_blobs
 import matplotlib.pyplot as plt
 
-# Generate a random dataset with 1 feature
-def generate_univariate_dataset(n_samples, n_categories, seed):
-    # Define feature number
-    n_features = 1
+# Generate a random dataset
+def generate_dataset(n_samples, n_features, n_categories, seed):
     # Generate data with X,y format
     X, y = make_blobs(n_samples=n_samples, centers=n_categories, n_features=n_features, random_state=seed)
+    # Create dictionary
+    df = { i: X[:, i] for i in range(X.shape[1]) }
+    df["category"] = y
     # Create dataframe
-    df = DataFrame(dict(x=X[:,0], category=y))
+    df = DataFrame(df)
     return df.sort_values(by=["category"])
 
 # Get attributes intervals
