@@ -45,3 +45,15 @@ def plot_univariate(title, df):
         values = df[df.iloc[:,1] == category].iloc[:,0]
         # Plot distribution
         ax.hist(values)
+
+# Plot a scatter chart for 2D data
+def scatter(title, df):
+    # Define canvas
+    fig, ax = plt.subplots()
+    # Set title
+    ax.set_title(title)
+    # Define scatter chart
+    plt.scatter(df.iloc[:,0], df.iloc[:,1], c = df.iloc[:,2])
+    # Plot it
+    plt.show()
+    
