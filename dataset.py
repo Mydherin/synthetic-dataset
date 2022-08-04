@@ -31,8 +31,8 @@ def attributes_intervals(df):
         attributes_intervals[attribute] = interval
     return attributes_intervals
 
-# Plot an histogram showing univariate dataset distribution
-def plot_univariate(title, df):
+# Plot an histogram from 1D data (group by categories)
+def histogram(title, df):
     # Define figure
     fig, ax = plt.subplots()
     # Set chart title
@@ -46,7 +46,7 @@ def plot_univariate(title, df):
         # Plot distribution
         ax.hist(values)
 
-# Plot a scatter chart for 2D data
+# Plot a scatter chart from 2D data (group by cateogries)
 def scatter(title, df):
     # Define canvas
     fig, ax = plt.subplots()

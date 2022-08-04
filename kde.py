@@ -168,8 +168,8 @@ def random_generation(n_instances, kdes, attribute_intervals, columns, seed):
     new_df = pd.DataFrame(data=new_df, columns=columns)
     return new_df
 
-# Plot univariate dataset with multiplet categories using KDE
-def plot_univariate(title, df, kdes, ranges=False):
+# Plot a 2D chart from 1D data (group by categories)
+def plot_2d(title, df, kdes, ranges=False):
     # Define figure
     fig, ax = plt.subplots()
     # Set chart title
