@@ -1,4 +1,5 @@
 from pandas import DataFrame
+import numpy as np
 from sklearn.datasets import make_blobs
 import matplotlib.pyplot as plt
 
@@ -13,8 +14,8 @@ def generate_dataset(n_samples, n_features, n_categories, seed):
     df = DataFrame(df)
     return df.sort_values(by=["category"])
 
-# Get attributes intervals
-def attributes_intervals(df):
+# Get attributes ranges
+def attributes_ranges(df):
     # Define attributes intervals structure
     attributes_intervals = {} 
     # Remove category column from dataset

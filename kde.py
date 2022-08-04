@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 # Calculate KDE for each category
 def kdes(df):
     kdes = {}
-    ranges = {}
     # Get categories values
     categories = df.iloc[:,-1].unique()
     # Caculate KDE for each category
@@ -18,17 +17,9 @@ def kdes(df):
         values = filtered_df.iloc[:,:-1].to_numpy()
         # Calculate KDE
         kde = stats.gaussian_kde(values.T)
-        # Get min
-        min_value = np.min(values)
-        # Get max
-        max_value = np.max(values)
-        # Add range to ranges list
-        ranges[category] = (min_value,max_value)
         # Add KDE to KDEs dictionary
         kdes[category] = kde
-    return kdes, ranges
-
-# Calculate attribute ranges
+    return kdes
 
 # Generate the suport for univariate dataset 
 def univariate_support(df, granularity):
@@ -171,7 +162,7 @@ def random_generation(n_instances, kdes, attribute_intervals, columns, seed):
     return new_df
 
 # Plot a 2D chart from 1D data (group by categories)
-def plot_2d(title, df, kdes, ranges=False):
+def plot_2d(title, df, kdes):
     # Define figure
     fig, ax = plt.subplots()
     # Set chart title
@@ -180,17 +171,9 @@ def plot_2d(title, df, kdes, ranges=False):
     for category, kde in kdes.items():
         # Get distribution values
         values = df[df.iloc[:,1] == category].iloc[:,0]
-        # If there ara ranges
-        if ranges:
-            # There are ranges
-            # Get min and max values from ranges
-            min_value = ranges[category][0]
-            max_value = ranges[category][1]
-        else:
-            # There are no ranges
-            # Get min and max values from values
-            min_value = values.min()
-            max_value = values.max()
+        # Get min and max values from values
+        min_value = values.min()
+        max_value = values.max()
         # Generate support
         support = np.linspace(min_value, max_value, 1000)
         # Get KDE density 
