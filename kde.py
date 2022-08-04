@@ -4,8 +4,8 @@ import numpy as np
 from scipy import stats
 import matplotlib.pyplot as plt
 
-# Calculate KDE by category
-def calculate_kdes(df):
+# Calculate KDE for each category
+def kdes(df):
     kdes = {}
     ranges = {}
     # Get categories values
@@ -27,6 +27,8 @@ def calculate_kdes(df):
         # Add KDE to KDEs dictionary
         kdes[category] = kde
     return kdes, ranges
+
+# Calculate attribute ranges
 
 # Generate the suport for univariate dataset 
 def univariate_support(df, granularity):
