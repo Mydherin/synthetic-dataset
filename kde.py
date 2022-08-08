@@ -21,7 +21,7 @@ def kdes(df):
         kdes[category] = kde
     return kdes
 
-# Generate the suport for univariate dataset 
+# Generate the support for univariate dataset 
 def univariate_support(df, granularity):
     # Define new df
     new_df = []
