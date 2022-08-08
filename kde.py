@@ -180,3 +180,34 @@ def plot_2d(title, df, kdes):
         density = kde(support)
         # Plot distribution
         ax.fill_between(support, density)
+
+# Plot a 3D chart from 2D data
+def plot_3d(title, df):
+    x = df.iloc[:, 0]
+    y = df.iloc[:, 1]
+    
+    # Define the borders
+    deltaX = (max(x) - min(x))/10
+    deltaY = (max(y) - min(y))/10
+
+    xmin = min(x) - deltaX
+    xmax = max(x) + deltaX
+    ymin = min(y) - deltaY
+    ymax = max(y) + deltaY
+    
+    # Create meshgrid
+    xx, yy = np.mgrid[xmin:xmax:100j, ymin:ymax:100j]
+    positions = np.vstack([xx.ravel(), yy.ravel()])
+    values = np.vstack([x, y])
+    kde = stats.gaussian_kde(values)
+    f = np.reshape(kde(positions).T, xx.shape)
+    
+    # PLot 3D chart
+    fig, ax = plt.subplots()
+    ax = plt.axes(projection='3d')
+    w = ax.plot_wireframe(xx, yy, f)
+    ax.set_xlabel('x')
+    ax.set_ylabel('y')
+    ax.set_zlabel('PDF')
+    ax.set_title(title)
+
