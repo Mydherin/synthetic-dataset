@@ -44,6 +44,50 @@ def univariate_support(df, granularity):
     new_df = pd.DataFrame(data=new_df, columns=df.columns)
     return new_df 
 
+# Generate new dataset from a multivariate dataset.
+# This distribution of this dataset is a rectangle, this means that the density is the same for each instance.
+def multivariate_dataset(df, granularity):
+    # Define new df
+    new_df = []
+    # Get categories
+    categories = df.iloc[:,-1].unique()
+    # Define n_attributes
+    n_attributes = len(df.columns) - 1
+    # Get instances for each category
+    for category in categories:
+        # Filter dataset by category
+        filtered_df = df[df.iloc[:,-1] == category]
+        # Define attributes supports
+        attributes_supports = []
+        # Get support for each attribute
+        for attribute in range(n_attributes):
+            # Get min value
+            min_value = filtered_df.iloc[:,attribute].min()
+            # Get max value
+            max_value = filtered_df.iloc[:,attribute].max()
+            # Build the support
+            support = np.linspace(min_value, max_value, granularity)
+            # Add support to attributes supports 
+            attributes_supports.append(support)
+        # Generate combinations between all attributes supports
+        ## Generate meshgrid
+        meshgrid = np.meshgrid(*attributes_supports)
+        ## Reshape meshgrid as vectors (one per dimension)
+        meshgrid = [support.ravel() for support in meshgrid]
+        ## Stack all vectors and transpose them
+        combinations = np.vstack(meshgrid).T
+        ## Assign category correctly to each combination
+        for combination in combinations:
+            # Parse numpy combination to list
+            combination = combination.tolist()
+            # Assing category
+            combination.append(category)
+            # Add instance to new_df
+            new_df.append(combination)
+    # Create new df
+    new_df = pd.DataFrame(new_df, columns=df.columns)
+    return new_df
+
 # Estimate instance densities using KDEs
 def estimate_density(df, kdes):
     # Define new df
