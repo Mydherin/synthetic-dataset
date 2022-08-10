@@ -148,6 +148,39 @@ def adjust_representation(densities):
     new_df = pd.DataFrame(data=new_instances, columns=columns)
     return new_df
 
+# Generate new dataser adjusting instance representation.
+def new_adjust_representation(densities):
+    # Define new instances
+    new_instances = []
+    # Get categories
+    categories = densities.iloc[:,-2].unique()
+    # Estimate instance density for each category instances
+    for category in categories:
+        # Filter dataset by category
+        filtered_densities = densities[densities.iloc[:,-2] == category]
+        # Sort by density 
+        filtered_densities = filtered_densities.sort_values(by=['density'], ascending=False)
+        # Define min density
+        PERCENT = 0.5
+        reference_instance = round(len(filtered_densities) * PERCENT)
+        min_density = filtered_densities.iloc[reference_instance, -1]
+        print(reference_instance)
+        print(min_density)
+        # Generate proportional number (density based) of instances for each instance
+        for index, row in filtered_densities.iterrows():
+            # Get instance density
+            density = row["density"]
+            # Estimate amount of duplicate instances
+            n_duplicate_instances = round(density/min_density)
+            # Generate duplicate instances
+            duplicate_instances = [row for i in range(n_duplicate_instances)]
+            # Add duplicate instances to new dataframe
+            new_instances.extend(duplicate_instances)
+    # Define new df
+    new_df = pd.DataFrame(data=new_instances, columns=densities.columns)
+    new_df = new_df.drop(["density"], axis=1)
+    return new_df
+
 # Genrate new dataframe randomly using KDEs
 def random_generation(n_instances, kdes, attribute_intervals, columns, seed):
     # Set random seed
