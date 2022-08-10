@@ -1,6 +1,9 @@
 from pandas import DataFrame
 import numpy as np
 from sklearn.datasets import make_blobs
+from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import StratifiedKFold, KFold
+from sklearn.naive_bayes import GaussianNB
 import matplotlib.pyplot as plt
 
 # Generate a random dataset
@@ -13,6 +16,50 @@ def generate_dataset(n_samples, n_features, n_categories, seed):
     # Create dataframe
     df = DataFrame(df)
     return df.sort_values(by=["category"])
+
+# Stratified Cross validation for any classifier
+def scv(df, clf = GaussianNB(), folds=10):
+    # Get X
+    X = df.iloc[:,:-1]
+    # Get y
+    y = df.iloc[:,-1]
+    # Define kind of cross validation
+    cv = StratifiedKFold(n_splits=folds)
+    # Do cross validation
+    scores = cross_val_score(clf, X, y, cv=cv)
+    # Get scores mean
+    mean = scores.mean()
+    # Get scores std
+    std = scores.std()
+
+    return mean, std
+
+# Holdout for any classifier
+def holdout(df, train_df = DataFrame(), clf = GaussianNB()):
+    # Define X_train, y_train, X_test and y_test
+    X_train, y_train, X_test, y_test = (None, None, None, None)
+    # If there is a train df
+    if not train_df.empty:
+        # Get X_train
+        X_train = train_df.iloc[:,:-1]
+        # Get y_train
+        y_train = train_df.iloc[:,-1]
+        # Get X_test
+        X_test = df.iloc[:,:-1]
+        # Get y_test
+        y_test = df.iloc[:,-1]
+    else:
+        # TODO: Implement this block
+        pass
+    # Train the model
+    clf.fit(X_train, y_train)
+    # Make predictions
+    y_pred = clf.predict(X_test)
+    # Calculate accuracy
+    accuracy = (y_test == y_pred).sum()/len(y_test)
+    
+    return accuracy
+
 
 # Get attributes ranges
 def attributes_ranges(df):

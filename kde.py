@@ -164,8 +164,6 @@ def new_adjust_representation(densities):
         PERCENT = 0.5
         reference_instance = round(len(filtered_densities) * PERCENT)
         min_density = filtered_densities.iloc[reference_instance, -1]
-        print(reference_instance)
-        print(min_density)
         # Generate proportional number (density based) of instances for each instance
         for index, row in filtered_densities.iterrows():
             # Get instance density
