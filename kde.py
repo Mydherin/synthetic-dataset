@@ -149,7 +149,7 @@ def adjust_representation(densities):
     return new_df
 
 # Generate new dataser adjusting instance representation.
-def new_adjust_representation(densities):
+def multivariate_adjust_representation(densities):
     # Define new instances
     new_instances = []
     # Get categories

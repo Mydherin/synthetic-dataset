@@ -65,14 +65,39 @@
 - New dataset size problem
 - Most important part of this project
 
-## Multivariate Test Datasset Generation
+## Multivariate Test Dataset Generation
 
-- Purpose and how to achieve this
+- Context
+- Purpose
+- How to achieve this
 - Specifications
 - Plot dataset
 - Plot [code]
-
-## Future changes
-
-- Purpose
-- Mathematic methods
+- Plot description
+- Plot conclusion
+- KDEs Step
+- KDEs function changes
+- KDEs [code]
+- New dataset approach context
+- Approach description
+- How to make approach
+- Approach method changes
+- Approach buildign [code]
+- Adjustment context
+- Adjustment purpose
+- Density method changes
+- Density calculation [code]
+- Adjustment step
+- How to make adjustment
+- Adjustment [code]
+- Synthetic dataset generated
+- Plot synthetic dataset
+- Plot synthetic dataset [code]
+- Describe charts
+- Charts conclusion
+- Predictive test purpose
+- How to predictive test
+- Traditional supervised learning [code]
+- Alternative supervised learning [code]
+- Results description
+- Results conclusion
